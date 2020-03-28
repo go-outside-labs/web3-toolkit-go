@@ -13,6 +13,8 @@
 
 ## Golang Cheatsheet
 
+Note: everything that has a 🌟 in the title is something special in Go.
+
 #### Basic Structure
 ```
 package main
@@ -65,7 +67,7 @@ if 7%2 == 0 {
 }
 ```
 
-#### Switch
+#### 🌟 Switch
 
 * Unlike Python, Golang has a `switch` statement to express conditionals across many branches.
 * You can use commas to separte multiple expressions in the same `case` statement. 
@@ -85,7 +87,75 @@ case 3:
 
 #### Arrays
 
-* In Go, an ar
+* In Go, an `arrray` is aa numbered sequence of elements of a specific length.
+* The type of elements and length are both part of the array's part.
+* By default, an array is zero-valued.
+
+```
+var a [5]int
+```
+
+* Use this syntax to declare and initalize an array in one line.
+
+```
+b := [5]int{1, 2, 3, 4, 5}
+```
+* Arrays can be made multi-dimensional:
+
+```
+var twoD [2][3]int
+    for i := 0; i < 2; i++ {
+        for j := 0; j < 3; j++ {
+            twoD[i][j] = i + j
+        }
+    }
+```
+
+#### 🌟 Slices
+
+* Slices are a key data type in golang, giving an interface to sequences.
+* Unlike arrays, slices are typed only by the elements they contain (not the number of elements).
+
+```
+s := make([]string, 3)
+```
+
+* Slices support several operations such as: `append` and  `copy`.
+* Slices can be multi-dimensitonal as well:
+
+```
+twoD := make([][]int, 3)
+    for i := 0; i < 3; i++ {
+        innerLen := i + 1
+        twoD[i] = make([]int, innerLen)
+        for j := 0; j < innerLen; j++ {
+            twoD[i][j] = i + j
+        }
+    }
+```
+
+
+#### Maps
+
+* Maps are Go's built-in *associative data types*, similar to `dicts` in Python.
+* To create an empty map, use `make`:
+
+```
+m := make(map[string]int)
+```
+
+* The builtin `delete` removes key/value pairs from a map.
+* The optional return value when getting a value from a map indicates if the key was present in the map.
+
+```
+_, exist := m["key"]
+```
+
+* You can declare and initialize a new map in the same line:
+
+```
+n := map[string]int{"foo": 1, "bar": 2}
+```
 
 
 
