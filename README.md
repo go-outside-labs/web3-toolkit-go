@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/bt3gl/Awesome_Golang_Examples)](https://goreportcard.com/report/github.com/bt3gl/Awesome_Golang_Examples)
 
 
-# Subdirectories 
+## In this repository 
 
 * [Start Here](https://github.com/bt3gl/Awesome_Golang_Examples/tree/master/start_here).
 
@@ -85,12 +85,20 @@ case 3:
 
 #### Arrays
 
+* In Go, an ar
 
+
+
+----
 
 
 ## References
 
+* [Golang Official documentation](https://golang.org/).
 * [Go by Example](https://gobyexample.com/).
+* [/r/golang)](https://www.reddit.com/r/golang/).
+* [Go weekly](https://golangweekly.com/).
+
 
 
 
