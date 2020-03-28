@@ -13,7 +13,7 @@
 
 ## Golang Cheatsheet
 
-Note: everything that has a 🌟 in the title is something special in Go.
+Note: everything that has a 🌟 in the title is *something special* in Go.
 
 #### Basic Structure
 ```
@@ -135,7 +135,7 @@ twoD := make([][]int, 3)
 ```
 
 
-#### Maps
+#### 🌟 Maps
 
 * Maps are Go's built-in *associative data types*, similar to `dicts` in Python.
 * To create an empty map, use `make`:
@@ -156,6 +156,162 @@ _, exist := m["key"]
 ```
 n := map[string]int{"foo": 1, "bar": 2}
 ```
+
+#### Range
+
+* `range` iterates over elements in a variety of data structures.
+* On map, it iterates over key/pair values:
+
+```
+kvs := map[string]string{"a": "apple", "b": "banana"}
+    for k, v := range kvs {
+        fmt.Printf("%s -> %s\n", k, v)
+    }
+```
+
+* On arrays and slices, it iterates over both the index and the value of each entry:
+
+```
+   for i, num := range nums {
+        if num == 3 {
+            fmt.Println("index:", i)
+        }
+    }
+```
+
+* On strings, iterates over Unicode code points. The first value is the starting byte index of the rune, and the second the rune itself:
+
+```
+for i, c := range "go" {
+        fmt.Println(i, c)
+    }
+```
+
+#### 🌟 Functions
+
+* Go requires explicit returns.
+```
+func plus(a int, b int) int {
+   return a + b
+}
+```
+
+* When you have multiple consecutive parameters of the same type, you may omit the type:
+
+```
+func plus(a, b, c int) int {
+   return a + b + c
+}
+```
+
+* Go has built-in support for *multiple return values**.
+
+```
+func vals() (int, int) {
+    return 3, 7
+}
+```
+
+* **Variadic functions** can be called with any number of trailing arguments. For example, `fmt.Println` is a variatic function.
+
+* Here is a function that takes an arbritary number of ints:
+
+```
+func sum(nums ...int) {
+    for _, num := range nums {
+        total += num
+    }
+    return num
+}
+```
+
+* If you already have multiple args in a slice, you can apply them to a variadic function with `func(slice...)`:
+
+```
+nums := []int{1, 2, 3, 4}
+sum(nums...)
+```
+
+#### 🌟 Closure
+
+* Go supports *anonymous functions* which can form *closures*. 
+* A function can return another function that is defined anonymously in the main function's body. The returned function closes over the variable i to form a closure:
+
+```
+func intSeq() func() int {
+    i := 0
+    return func() int {
+        i++
+        return i
+    }
+}
+
+func main() {
+    nextInt := intSeq()
+    
+    fmt.Println(nextInt())
+    fmt.Println(nextInt()) 
+    fmt.Println(nextInt())
+    
+    newInts := intSeq()
+    fmt.Println(newInts())
+}
+```
+
+Running this snippet prints:
+
+```
+➜ go run closures.go
+1
+2
+3
+1
+```
+
+#### Recursion
+
+* Here is a classical factorial example for recursive functions:
+
+```
+package main
+import "fmt"
+
+func fact(n int) int {
+    if n == 0 {
+        return 1
+    }
+    return n * fact(n-1)
+}
+func main() {
+    fmt.Println(fact(7))
+}
+```
+
+#### 🌟 Pointers
+
+* Go supports pointers, allowing you to pass references to values and records within a program.
+
+* Assigning a value to a dereferenced pointer changes the value at the referenced address.
+
+```
+// Function argument by value
+func zeroval(ival int) {
+    ival = 0
+}
+
+// Function argument by pointer
+func zeroptr(iptr *int) {
+    *iptr = 0
+}
+```
+
+* The `&i` syntax gives the memory address of `i`, i.e., a pointer to `i`.
+
+
+
+
+
+
 
 
 
