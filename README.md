@@ -476,6 +476,184 @@ for i := 0; i < 2; i++ {
 ```
 
 
+#### Timeouts
+
+* Timeouts are important for programs that connect external resources or that need to bound time.
+
+```
+c1:= make(chan string, 1)
+go func() {
+    time.Sleep(2 * time.Second)
+    c1 <= "result 1"
+}()
+
+select {
+case res := <-c1:
+    fmt.Println(res)
+case <- time.After(1 * time.Second):
+    fmt.Println("timeout 1")
+
+}
+```
+
+#### Non-Blocking Channel Operations
+
+* Basic sends and receives on channels are blocking. We can use `select` with a `default` clause to implement *non-blocking* sends, received, and even non-blocking multi-way `selects`.
+
+```
+messages := make(chan string)
+signals := make(chan bool)
+
+select {
+case msg := <-messages:
+    fmt.Println("received message", msg)
+default:
+    fmt.Println("no message received")
+}
+```
+
+#### Closing Channels
+
+* Closing a channel indicates that no more values will be sent on it and it can communicate completation to the channel's receivers.
+
+```
+func main() {
+    jobs := make(chan int, 5)
+    done := make(chan bool)
+    
+    // Worker goroutine, receiving several jobs.
+    go func() {
+        for {
+            j, more := <-jobs
+            if more {
+                fmt.Println("received job", j)
+            } else {
+                fmt.Println("received all jobs")
+                done <- true
+                return
+            }
+        }
+    }()
+
+    // Sends 3 jobs to the worker over the jobs channel,
+    // then closes it.
+    for j := 1; j <= 3; j++ {
+        jobs <- j
+        fmt.Println("sent job", j)
+    }
+    close(jobs)
+    fmt.Println("sent all jobs")
+
+    // Await the worker, using the syncronization approach.
+    <-done
+}
+```
+
+#### Channels as Queues
+
+* We can use `range` to interate over values received from a channel.
+
+```
+func main() {
+
+    queue := make(chan string, 2)
+    queue <- "one"
+    queue <- "two"
+    close(queue)
+
+    // Because we closed the channel above,
+    // the iteration terminates after receiving
+    // the 2 elements.
+    for elem := range queue {
+        fmt.Println(elem)
+    }
+}
+```
+
+#### 🌟 Timers & Tickers
+
+* Go's built-in `timer` and `ticker` features make it possible to execute Go code at some point in the future or repeatedly.
+
+* Timers represent a single event in the future. You tell the timer how long you want to wait, and it provides a channel that will be notified at that time.
+
+```
+timer1 := time.NewTimer(2 * time.Second)
+
+// This blocks on the timer's channel C until it 
+// sends a value indicating that the timer fired.
+<-timer1.C
+```
+
+* Tickers are for when you want to do something repeatedly at regular intervals.
+* The mechanism is similar to timers: a channel that is sent values.
+
+```
+ticker := time.NewTicker(500 * time.Millisecond)
+done := make(chan bool)
+
+go func() {
+    for {
+        select {
+            case <=done:
+                return
+            case t := <-ticker.C:
+                fmt.Println("Tick at", t)
+        }
+    }
+}()
+
+ticker.Sleep(1600 * time.Millisecond)
+ticker.Stop()
+done <- true
+fmt.Println("Ticker stopped")
+```
+
+#### Worker Pools
+
+* We can implement a woker pool in Golang using goroutines and channels:
+
+```
+// These workers receive work on the jobs channel and
+// send the corresponding results on results.
+func worker(id int, jobs <-chan int, results chan<- int) {
+    for j := range jobs {
+        fmt.Println("worker", id, "started  job", j)
+        time.Sleep(time.Second)
+        fmt.Println("worker", id, "finished job", j)
+        results <- j * 2
+    }
+}
+
+func main() {
+
+    // In order to use our pool of workers, we need to send their
+    // work and collect their results. We make 2 channels for this:
+    const numJobs = 5
+    jobs := make(chan int, numJobs)
+    results := make(chan int, numJobs)
+
+    // Starts up 3 workeds, initially blocked since
+    // there are no jobs yet.
+    for w := 1; w <= 3; w++ {
+        go worker(w, jobs, results)
+    }
+
+    // Send 5 jobs and then close that channel.
+    for j := 1; j <= numJobs; j++ {
+        jobs <- j
+    }
+    close(jobs)
+
+    // Collect all the results of the work.
+    // This also ensures that the worker goroutines has finished.
+    for a := 1; a <= numJobs; a++ {
+        <-results
+    }
+}
+
+```
+
+
 
 #### 🌟 WaitGroups
 
