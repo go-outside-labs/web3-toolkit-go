@@ -369,6 +369,113 @@ func f1(arg int) (int, error) {
 ```
 
 
+#### 🌟 Goroutines
+
+* A goroutine is a lightweight thread of execution.
+
+```
+go f()
+```
+
+* You can also start a goroutine for an anonymous function call:
+
+```
+go func(msg string){
+    fmt.Prinln(msg)
+}("hello")
+```
+
+
+
+
+#### 🌟 Channels
+
+* *Channels* are pipes that connect concurrent goroutines. 
+* Channels are typed by the values they convey.
+
+```
+messages := make(chan string)
+
+go func() { 
+    messages <- "ping" 
+}()
+    
+msg := <- messages
+fmt.Println(msg)
+```
+prints
+```
+ping
+```
+
+* In the example above, the 'ping' message is successfully passed from one go routine to another via channel.
+
+* By default, channels are unbuffered: they will only accept sends (`chan <-`) if there is a corresponding receive (`<- chan`) ready to receive the sent value.
+
+* Buffered channels accept a limited number of values (`2` in the example below) without a corresponding receiver for those values.
+```
+messages := make(chan string, 2)
+messages <- "buffered"
+messages <- "channel"
+
+fmt.Println(<-messages)
+```
+
+* You can use channels to synchronize execution accross goroutines (or ou can use `Waitgroups`).
+
+```
+func worker(done chan bool) {
+    fmt.Print("working...")
+    time.Sleep(time.Second)
+    fmt.Println("done")
+    done <- true
+}
+
+func main() {
+    // Start a worker goroutine, giving 
+    // it the channel to notify on.
+    done := make(chan bool, 1)
+    go worker(done)
+    
+    // Block until we receive a notification from 
+    // the worker on the channel
+    <- done
+}
+```
+
+
+#### 🌟 Select
+
+* Go's `select` lets you wait on multiple channel operations.
+* In the example below, select across two channels:
+
+```
+c1 := make(chan string)
+c2 := make(chan string)
+
+go func() {
+    time.Sleep(1)
+    c1 <- "one"
+}()
+
+go func() {
+    time.Sleep(2)
+    c2 <- "two"
+}()
+
+for i := 0; i < 2; i++ {
+    // use select to await both values simultaneously
+    // printing each one as it arrives.
+    select {
+        case msg1 := <-c1:
+            fmt.Println("received", msg1)
+        case msg2 := <-c2:
+            fmt.Println("received", msg2)
+    }
+}
+```
+
+
 
 #### 🌟 WaitGroups
 
@@ -391,25 +498,6 @@ func main() {
     wg.Wait()
 }
 ```
-
-
-#### 🌟 Channels
-
-* *Channels* are pipes that connect concurrent goroutines. 
-* Channels are typed by the values they convey.
-
-```
-messages := make(chan string)
-go func() { messages <- "ping" }()
-msg := <-messages
-fmt.Println(msg)
-```
-prints
-```
-ping
-```
-
-* In the example above, the 'ping' message is successfully passed from one go routine to another via channel.
 
 #### 🌟 Signals
 
@@ -608,7 +696,7 @@ fmt.Println(string(grepBytes))
 
 ### Communities
 
-* [/r/golang)](https://www.reddit.com/r/golang/).
+* [/r/golang](https://www.reddit.com/r/golang/).
 * [Go weekly](https://golangweekly.com/).
 
 
