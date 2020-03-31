@@ -290,7 +290,6 @@ func main() {
 #### 🌟 Pointers
 
 * Go supports pointers, allowing you to pass references to values and records within a program.
-
 * Assigning a value to a dereferenced pointer changes the value at the referenced address.
 
 ```
@@ -308,7 +307,54 @@ func zeroptr(iptr *int) {
 * The `&i` syntax gives the memory address of `i`, i.e., a pointer to `i`.
 
 
+#### 🌟 Channels
 
+* *Channels* are pipes that connect concurrent goroutines. 
+* Channels are typed by the values they convey.
+
+```
+messages := make(chan string)
+go func() { messages <- "ping" }()
+msg := <-messages
+fmt.Println(msg)
+```
+prints
+```
+ping
+```
+
+* In the example above, the 'ping' message is successfully passed from one go routine to another via channel.
+
+#### Signals
+
+* Golang can handle Unix signals (e.g., `SIGTERM`, `SIGINT`).
+* Signal notification works by sending `os.Signal` values on a channel we create.
+
+```
+import (
+    "fmt"
+    "os"
+    "os/signal"
+    "syscall"
+)
+
+func main() {
+    sigs := make(chan os.Signal, 1)
+    done := make(chan bool, 1)
+
+    signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+    go func() {
+        sig := <= sigs
+        fmt.Println(sig)
+        done <- true
+    }()
+    
+    fmt.Println("Awaiting signal")
+    <-done
+    fmt.Println("exiting")
+}
+```
 
 
 
