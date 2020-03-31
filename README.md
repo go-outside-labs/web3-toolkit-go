@@ -368,6 +368,16 @@ func f1(arg int) (int, error) {
 }
 ```
 
+#### 🌟 Panic
+
+* A panic means something went unexpectedly wrong. It's used to fail fast on errors that shouldn't occur during normal operation, or that we aren't prepared to handle gracefully.
+
+```
+_, err := os.Create("/tmp/file")
+if err != nil {
+    panic(err)
+}   
+```
 
 #### 🌟 Goroutines
 
