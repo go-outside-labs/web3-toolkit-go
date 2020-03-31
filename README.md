@@ -1,6 +1,8 @@
 # ✨ Examples and Boilerplates for Golang ✨ 
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/bt3gl/Awesome_Golang_Examples)](https://goreportcard.com/report/github.com/bt3gl/Awesome_Golang_Examples)
+[![Go Report Card](https://goreportcard.com/badge/github.com/bt3gl/Awesome_Golang_Examples)](https://goreportcard.com/report/github.com/bt3gl/Awesome_Golang_Examples)  ![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg) [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/bt3gl/Awesome_Entrepreneur)  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
+
+
 
 
 ## In this repository 
@@ -306,6 +308,28 @@ func zeroptr(iptr *int) {
 
 * The `&i` syntax gives the memory address of `i`, i.e., a pointer to `i`.
 
+#### 🌟 WaitGroups
+
+* To wait for multiple goroutines to finish, we can use a *WaitGroup*.
+
+```
+func worker(id int, wg *sync.WaitGrpup) {
+    defer wg.Done()
+    fmt.Printf("Worker %d starting\n", id)
+    time.Sleep(time.Second)
+    fmt.Printf("Worker %d done\n", id)
+}
+
+func main() {
+    var wg sync.WaitGroup
+    for i := 1; i <= 5; i++ {
+        wg.Add(1)
+        go worker(i, &wg)
+    }
+    wg.Wait()
+}
+```
+
 
 #### 🌟 Channels
 
@@ -325,7 +349,7 @@ ping
 
 * In the example above, the 'ping' message is successfully passed from one go routine to another via channel.
 
-#### Signals
+#### 🌟 Signals
 
 * Golang can handle Unix signals (e.g., `SIGTERM`, `SIGINT`).
 * Signal notification works by sending `os.Signal` values on a channel we create.
@@ -356,10 +380,157 @@ func main() {
 }
 ```
 
+#### Creating an HTTP Client
+
+* Issuing an HTTP GET request to a server:
+
+```
+resp, err := http.Get("http://curiee.com")
+if err != nil {
+    panic(err)
+}
+defer resp.Body.Close()
+fmt.Println("Response status:", resp.Status)
+
+// Print the response body
+scanner := bufio.NewScanner(resp.Body)
+for i := 0; scanner.Scan() && i < 5; i++ {
+    fmt.Println(scanner.Text())
+}
+if err := scanner.Err(); err != nil {
+    panic(err)
+}
+```
+
+
+#### Creating an HTTP Server
+
+* A fundamental concept in `net/http` servers is **handlers**. A handler is an object implementing the `http.Handler` interface.
+* Functions serving as handlers take a `http.ResponseWriter` and `http.Request` as arguments. The response writer is used to fill in the HTTP response.
+
+```
+func hello(w http.ResponseWriter, req *http.Request) {
+    fmt.Fprintf(w, "hello\n")
+}
+```
+
+* Handlers can also read HTTP request headers and echo them into the response body:
+
+```
+func headers(w http.ResponseWritter, req *http.Request) {
+    for name, headers := range req.Header {
+        for _, h := range headers {
+            fmt.Fprint(w, "%v: %v\n", name, h)
+        }
+    }
+}
+```
+
+* Handlers on server routes can be registered using `http.HandleFunc`, which sets up the default route and takes a function as an argument:
+
+```
+func main() {
+    http.HandleFunc("/hello", hello)
+    http.HandleFunc("/headers", header)
+    http.ListenAndServe(":8090", nil)
+}
+```
 
 
 
+#### 🌟 Context
 
+* A `Context` carries deadlines, cancellation signals, and other request-scoped values accross API boundaries and goroutines.
+* In the example below, a `context.Context` is created for each request by the `net/http` machinery, and it's available withe `Context()` method.
+
+```
+import (
+    "fmt"
+    "net/http"
+    "time"
+)
+
+func hello(w http.ResponseWriter, req *http.Request) {
+    
+    ctx := req.Context()
+    fmt.Println("server: hello handler started")
+    defer fmt.Println("server: hello handler ended")
+    
+    select {
+        case <-time.After(10 * time.Second):
+            fmt.Fprintf(w, "hello\n")
+        case <-ctx.Done():
+            err := ctx.Err()
+            fmt.Println("server:", err)
+            internalError := http.Status
+    
+    }
+}
+
+func main() {
+    http.HandleFunc("/hello", hello)
+    http.ListenAndServe(":80900", nil)
+}
+```
+
+
+
+#### 🌟 Exec'ing Processes
+
+* To replace the current Go process with another (Go or non-Go), we can use `exec`.
+* In the snippet below, we get an absolute path for a binary (`ls`) and then create a slice with the arguments, load environmnet variables, and then run `exec`:
+
+```
+package main
+
+import (
+    "os"
+    "os/exec"
+    "syscall"
+)
+
+func main() {
+
+    binary, lookErr := exec.LookPath("ls")
+    if lookErr != nil {
+        panic(lookErr)
+    }
+    args := []string{"ls", "-a", "-l", "-h"}
+    env := os.Environ()
+    
+    execErr := syscall.Exec(binary, args, env)
+    if execErr != nil {
+        panic(execErr)
+    }
+}
+```
+
+#### 🌟 Spawning Processes
+
+* It's possible to spawn processes from go using `exec.Command()`. This command creates an object to represent the external process.
+```
+dateCmd := exec.Command("date")
+dateOut, err := dateCmd.Output()
+if err != nil {
+    panic(err)
+}
+
+fmt.Println(string(dateOut))
+```
+
+* The method `.Output` is a helper that handles the common case of running a command, waiting for it to finish, and collecting its output.
+* In another example we can pipe data to external processes on its `STDIN` and `STDOUT`. 
+
+```
+grepCmd := exec.Command("grep", "hello")
+grepIn, _ := grepCmd.StdinPipe()
+grepOut, _ := grepCmd.StdoutPipe()
+grepCmd.Start()
+grepIn.Write([]byte("hello")
+grepIn.Close()
+grepByte, _ := ioutil.ReadAll(grepOut)
+grepCmd.Wait()
+fmt.Println(string(grepBytes))
 
 ----
 
