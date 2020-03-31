@@ -234,6 +234,124 @@ nums := []int{1, 2, 3, 4}
 sum(nums...)
 ```
 
+#### Strings 
+
+* Go offers lots of supports for string formating:
+
+```
+package main
+
+import (
+    "fmt"
+    "os"
+)
+
+type point struct {
+    x, y int
+}
+
+func main() {
+
+    p := point{1, 2}
+    fmt.Printf("%v\n", p)
+
+    // For a struct, the %+v variant will include 
+    // the struct’s field names
+    fmt.Printf("%+v\n", p)
+    
+    // Print the source code snippet that would 
+    // produce that value
+    fmt.Printf("%#v\n", p)
+    
+    // To print the type of a value, use %T
+    fmt.Printf("%T\n", p)
+    
+    // Formatting booleans
+    fmt.Printf("%t\n", true)
+    
+    // base-10 formatting
+    fmt.Printf("%d\n", 123)
+    
+    // prints a binary representation
+    fmt.Printf("%b\n", 14)
+    
+    //  prints the character corresponding to the given int
+    fmt.Printf("%c\n", 33)
+    
+    // provides hex encoding
+    fmt.Printf("%x\n", 456)
+    
+    // several formatting options for float
+    fmt.Printf("%f\n", 78.9)
+
+    // basic string printing use %s
+    fmt.Printf("%s\n", "\"string\"")
+    
+    // double-quote strings
+    fmt.Printf("%q\n", "\"string\"")
+    
+    // print a representation of a pointer
+    fmt.Printf("%p\n", &p)
+
+    // print error
+    fmt.Fprintf(os.Stderr, "an %s\n", "error")
+}
+```
+
+
+* The standard library's `strings` package provides many useful string-related functions.
+
+
+```
+package main
+
+import (
+    "fmt"
+    s "strings"
+)
+
+var p = fmt.Println
+
+func main() {
+
+    p("Contains:  ", s.Contains("test", "es"))
+    p("Count:     ", s.Count("test", "t"))
+    p("HasPrefix: ", s.HasPrefix("test", "te"))
+    p("HasSuffix: ", s.HasSuffix("test", "st"))
+    p("Index:     ", s.Index("test", "e"))
+    p("Join:      ", s.Join([]string{"a", "b"}, "-"))
+    p("Repeat:    ", s.Repeat("a", 5))
+    p("Replace:   ", s.Replace("foo", "o", "0", -1))
+    p("Replace:   ", s.Replace("foo", "o", "0", 1))
+    p("Split:     ", s.Split("a-b-c-d-e", "-"))
+    p("ToLower:   ", s.ToLower("TEST"))
+    p("ToUpper:   ", s.ToUpper("test"))
+    p()
+
+    p("Len: ", len("hello"))
+    p("Char:", "hello"[1])
+}
+```
+
+prints
+
+```
+Contains:   true
+Count:      2
+HasPrefix:  true
+HasSuffix:  true
+Index:      1
+Join:       a-b
+Repeat:     aaaaa
+Replace:    f00
+Replace:    f0o
+Split:      [a b c d e]
+ToUpper:    TEST
+Len:  5
+Char: 101
+```
+
+
 #### 🌟 Closure
 
 * Go supports *anonymous functions* which can form *closures*. 
