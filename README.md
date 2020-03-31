@@ -461,7 +461,7 @@ func (r *rect) area() int {
 
 #### Interfaces
 
-* Interfaces are named collections of method signatures.
+* Interfaces are named collections of method signatures and are used to achieve polymorphism in Go.
 
 ``` 
 type geometry interface {
