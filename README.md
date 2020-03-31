@@ -308,6 +308,68 @@ func zeroptr(iptr *int) {
 
 * The `&i` syntax gives the memory address of `i`, i.e., a pointer to `i`.
 
+
+#### Structs
+
+* Go's structs are typed collection of fields. They are useful for grouping data together to form records.
+
+```
+type person struct {
+    name string
+    age int
+}
+```
+
+* Struct fields can be accessed with a dot.
+* An `&` prefix yields a pointer to the struct.
+* Structs are mutable.
+
+
+##### Methods
+
+* Go supports methods defined on struct types.
+
+```
+type rect struct {
+    width, height int
+}
+
+func (r *rect) area() int {
+    return r.width * r.height
+}
+```
+
+* You may want to use a pointer receiver type to avoid copying on methods calls or to allow the method to mutate the receiving struct.
+
+#### Interfaces
+
+* Interfaces are named collections of method signatures.
+
+``` 
+type geometry interface {
+    area() float64
+    perim() float64
+}
+
+func measure(g geometry) {
+    fmt.Printl(g.area())
+}
+```
+
+#### Errors
+
+* It's idiomatic to communicate errors via an explicit return value.
+
+```
+func f1(arg int) (int, error) {
+    if arg == 43 {
+        return -1, errors.New("can't do 43")
+    }
+}
+```
+
+
+
 #### 🌟 WaitGroups
 
 * To wait for multiple goroutines to finish, we can use a *WaitGroup*.
@@ -531,17 +593,28 @@ grepIn.Close()
 grepByte, _ := ioutil.ReadAll(grepOut)
 grepCmd.Wait()
 fmt.Println(string(grepBytes))
+```
 
 ----
 
 
 ## References
 
+
+### Basic
+
 * [Golang Official documentation](https://golang.org/).
 * [Go by Example](https://gobyexample.com/).
+
+### Communities
+
 * [/r/golang)](https://www.reddit.com/r/golang/).
 * [Go weekly](https://golangweekly.com/).
 
+
+### Good readings
+
+* [Error handling and Go](https://blog.golang.org/error-handling-and-go).
 
 
 
