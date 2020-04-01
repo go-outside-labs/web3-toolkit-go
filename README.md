@@ -54,7 +54,7 @@ d : = 'other name'
 #### For loops
 
 ```
-for i := 7; j <= 9, j++ {
+for j := 7; j <= 9, j++ {
   fmt.Println(j)
 }
 ```
