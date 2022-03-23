@@ -1,14 +1,4 @@
-# ✨ Examples and Boilerplates for Golang ✨ 
-
-[![Go Report Card](https://goreportcard.com/badge/github.com/bt3gl/Awesome_Golang_Examples)](https://goreportcard.com/report/github.com/bt3gl/Awesome_Golang_Examples)  ![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg) [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/bt3gl/Awesome_Entrepreneur)  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) 
-
-
-
-
-## In this repository 
-
-* [Start Here](https://github.com/bt3gl/Awesome_Golang_Examples/tree/master/start_here).
-
+# ✨🐐 Golang: Boilerplates, resources, code
 
 
 --------
@@ -1065,23 +1055,20 @@ fmt.Println(string(grepBytes))
 ----
 
 
-## References
+## References and resources
 
-
-### Basic
-
-* [Golang Official documentation](https://golang.org/).
-* [Go by Example](https://gobyexample.com/).
-
-### Communities
-
-* [/r/golang](https://www.reddit.com/r/golang/).
-* [Go weekly](https://golangweekly.com/).
-
-
-### Good readings
-
-* [Error handling and Go](https://blog.golang.org/error-handling-and-go).
+* [Golang Official documentation](https://golang.org/)
+* [Go by Example](https://gobyexample.com/)
+* [/r/golang](https://www.reddit.com/r/golang/)
+* [Go weekly](https://golangweekly.com/)
+* [A Tour to Go](https://tour.golang.org/welcome/1)
+* [How to write Go code](https://golang.org/doc/code.html)
+* [Effective Go code](https://golang.org/doc/effective_go.html)
+* [Daily Dep](https://golang.github.io/dep/docs/daily-dep.html)
+* [Exercism](https://exercism.io/tracks/go)
+* [GoDoc](https://godoc.org/)
+* [Go Wiki](https://github.com/golang/go/wiki/Learn)
+* [Error handling and Go](https://blog.golang.org/error-handling-and-go)
 
 
 
