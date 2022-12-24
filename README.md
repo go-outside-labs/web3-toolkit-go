@@ -1,35 +1,47 @@
-# 🐐 golang for blockchain pvp
+## 🥷🏻🛹⛓️ mev golang: playing pvp in the metaweb
 
 <br>
 
-
-
-
-### in this repo
+### my [ongoing] web3 projects and templates 
 
 <br>
 
-* [basic snippets](https://github.com/MEV-WAIFU-LABS/golang_for_blockchain_pvp/tree/master/basics)
-* [search and sort](https://github.com/MEV-WAIFU-LABS/golang_for_blockchain_pvp/tree/master/search_and_sorting)
-* [GOLANG CHEATSHEET](https://github.com/MEV-WAIFU-LABS/golang_for_blockchain_pvp/blob/master/CHEATSHEET.md)
+* [📚 web3-golang-toolkit](web3_golang_toolkit)
+    - an ongoing development of a library and set of golang scripts with my fav on-chain ops.
+
+<br>
+
+---
+
+### my [over the years] web2 projects and templates
+
+<br>
+
+* [basic snippets](basics)
+* [search and sort](search_and_sorting)
+* [cheatsheet](CHEATSHEET.md)
 
 
 <br>
 
-## more resources
+----
 
-* [Golang Official documentation](https://golang.org/)
-* [Go by Example](https://gobyexample.com/)
+## golang resources
+
+<br>
+
+* [official documentation](https://golang.org/)
+* [go by example](https://gobyexample.com/)
 * [/r/golang](https://www.reddit.com/r/golang/)
-* [Go weekly](https://golangweekly.com/)
-* [A Tour to Go](https://tour.golang.org/welcome/1)
-* [How to write Go code](https://golang.org/doc/code.html)
-* [Effective Go code](https://golang.org/doc/effective_go.html)
-* [Daily Dep](https://golang.github.io/dep/docs/daily-dep.html)
-* [Exercism](https://exercism.io/tracks/go)
-* [GoDoc](https://godoc.org/)
-* [Go Wiki](https://github.com/golang/go/wiki/Learn)
-* [Error handling and Go](https://blog.golang.org/error-handling-and-go)
+* [go weekly](https://golangweekly.com/)
+* [a tour to go](https://tour.golang.org/welcome/1)
+* [how to write go code](https://golang.org/doc/code.html)
+* [effective go code](https://golang.org/doc/effective_go.html)
+* [daily dep](https://golang.github.io/dep/docs/daily-dep.html)
+* [exercism](https://exercism.io/tracks/go)
+* [godoc](https://godoc.org/)
+* [go wiki](https://github.com/golang/go/wiki/Learn)
+* [error handling and go](https://blog.golang.org/error-handling-and-go)
 
 
 

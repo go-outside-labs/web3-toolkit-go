@@ -1,8 +1,8 @@
-## Golang Cheatsheet
+## golang cheatsheet
 
 <br>
 
-Note: everything that has a 🌟 in the title is *something special* in Go.
+> note: everything that has a 🌟 in the title is *something special* in go.
 
 <br>
 
