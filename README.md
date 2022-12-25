@@ -1,4 +1,4 @@
-## 🥷🏻🛹⛓️ mev golang: playing pvp in the metaweb
+## 🥷🏻🛹⛓️ playing pvp in the metaweb: golang edition
 
 <br>
 
