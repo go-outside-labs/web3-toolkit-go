@@ -30,7 +30,6 @@
 
 * [basic snippets](basics)
 * [search and sort](search_and_sorting)
-* [cheatsheet](CHEATSHEET.md)
 
 
 <br>
