@@ -1,4 +1,4 @@
-## golang cheatsheet
+## golang tl; dr
 
 <br>
 
