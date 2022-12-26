@@ -2,9 +2,8 @@
 
 <br>
 
-### tl; dr 
+#### start with [solidity tl; dr](golang_tldr.md)
 
-##### why golang
 
 
 <br>
