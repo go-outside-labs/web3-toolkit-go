@@ -16,7 +16,7 @@
 
 <br>
 
-* [📚 web3toolkit](web3-golang-toolkit)
+* [📚 web3toolkit](web3toolkit)
     - an ongoing development of a library and set of golang scripts with my fav on-chain ops.
 
 <br>
