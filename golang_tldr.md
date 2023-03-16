@@ -1,4 +1,4 @@
-## golang tl; dr
+## go tl; dr
 
 <br>
 
