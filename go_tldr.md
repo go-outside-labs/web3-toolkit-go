@@ -197,7 +197,7 @@ func plus(a, b, c int) int {
 }
 ```
 
-* Go has built-in support for *multiple return values**.
+* Go has built-in support for *multiple return values*.
 
 ```
 func vals() (int, int) {
