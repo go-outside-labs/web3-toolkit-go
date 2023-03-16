@@ -1,8 +1,8 @@
-## 📚 web3-golang-toolkit
+## 📚 web3-go-toolkit
 
 <br>
 
-an ongoing development of golang scripts with my fav on-chain ops.
+an ongoing development of go scripts with my fav on-chain ops.
 
 <br>
 
