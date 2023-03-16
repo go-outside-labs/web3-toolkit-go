@@ -1,8 +1,8 @@
-## 🥷🏻🛹⛓️ playing pvp in the metaweb: golang edition
+## 🥷🏻🛹⛓️ playing pvp in the metaweb: go edition
 
 <br>
 
-### start with [golang tl; dr](golang_tldr.md)
+### start with [go tl; dr](golang_tldr.md)
 
 
 
@@ -16,8 +16,8 @@
 
 <br>
 
-* [📚 web3toolkit](web3toolkit)
-    - an ongoing development of a library and set of golang scripts with my fav on-chain ops.
+* [📚 web3toolkit-go](web3toolkit)
+    - an ongoing development of a library and set of go scripts with my fav on-chain ops.
 
 <br>
 
@@ -35,7 +35,7 @@
 
 ----
 
-### resources
+### external resources
 
 <br>
 
