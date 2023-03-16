@@ -2,7 +2,7 @@
 
 <br>
 
-### start with [go tl; dr](golang_tldr.md)
+### start with [go tl; dr](go_tldr.md)
 
 
 
