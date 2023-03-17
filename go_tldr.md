@@ -2,11 +2,14 @@
 
 <br>
 
-> note: everything that has a 🌟 in the title is *something special* in go.
+> everything that has a 🌟 in the title is *something special* in go.
 
 <br>
 
 #### Basic Structure
+
+<br>
+
 ```
 package main
 
@@ -17,7 +20,11 @@ func main() {
 }
 ```
 
+<br>
+
 #### Running and/or building
+
+<br>
 
 ```
 $ go run hello-world.go
@@ -28,7 +35,11 @@ $ go build hello-world.go
 $ ./hello-world
 ```
 
+<br>
+
 #### Variables
+
+<br>
 
 ```
 var a = 'name'
@@ -40,7 +51,11 @@ d : = 'other name'
 * Syntax `:=` is shorthand for declaring and initializing. 
 * Constants can be created with `const`.
 
+<br>
+
 #### For loops
+
+<br>
 
 ```
 for j := 7; j <= 9, j++ {
@@ -48,7 +63,11 @@ for j := 7; j <= 9, j++ {
 }
 ```
 
+<br>
+
 #### If/Else
+
+<br>
 
 ```
 if 7%2 == 0 {
@@ -58,12 +77,18 @@ if 7%2 == 0 {
 }
 ```
 
+<br>
+
 #### 🌟 Switch
 
-* Unlike Python, Golang has a `switch` statement to express conditionals across many branches.
-* You can use commas to separte multiple expressions in the same `case` statement. 
+<br>
+
+* Unlike Python, Go has a `switch` statement to express conditionals across many branches.
+* You can use commas to separate multiple expressions in the same `case` statement. 
 * You can use the optional `default` case in the example as well.
-* You can use a `switch` without an expression as an alternate way to exress `if/else` logic.
+* You can use a `switch` without an expression as an alternate way to express `if/else` logic.
+
+<br>
 
 ```
 switch i {
@@ -76,9 +101,13 @@ case 3:
 }
 ```
 
+<br>
+
 #### Arrays
 
-* In Go, an `arrray` is aa numbered sequence of elements of a specific length.
+<br>
+
+* In Go, an `array` is a numbered sequence of elements of a specific length.
 * The type of elements and length are both part of the array's part.
 * By default, an array is zero-valued.
 
@@ -86,7 +115,7 @@ case 3:
 var a [5]int
 ```
 
-* Use this syntax to declare and initalize an array in one line.
+* Use this syntax to declare and initialize an array in one line.
 
 ```
 b := [5]int{1, 2, 3, 4, 5}
@@ -102,9 +131,14 @@ var twoD [2][3]int
     }
 ```
 
+<br>
+
 #### 🌟 Slices
 
-* Slices are a key data type in golang, giving an interface to sequences.
+<br>
+
+
+* Slices are a key data type in go, giving an interface to sequences.
 * Unlike arrays, slices are typed only by the elements they contain (not the number of elements).
 
 ```
@@ -112,7 +146,7 @@ s := make([]string, 3)
 ```
 
 * Slices support several operations such as: `append` and  `copy`.
-* Slices can be multi-dimensitonal as well:
+* Slices can be multi-dimensional variatic as well:
 
 ```
 twoD := make([][]int, 3)
@@ -125,8 +159,11 @@ twoD := make([][]int, 3)
     }
 ```
 
+<br>
 
 #### 🌟 Maps
+
+<br>
 
 * Maps are Go's built-in *associative data types*, similar to `dicts` in Python.
 * To create an empty map, use `make`:
@@ -148,7 +185,11 @@ _, exist := m["key"]
 n := map[string]int{"foo": 1, "bar": 2}
 ```
 
+<br>
+
 #### Range
+
+<br>
 
 * `range` iterates over elements in a variety of data structures.
 * On map, it iterates over key/pair values:
@@ -178,9 +219,12 @@ for i, c := range "go" {
     }
 ```
 
+<br>
 
 
 #### 🌟 Functions
+
+<br>
 
 * Go requires explicit returns.
 ```
@@ -205,9 +249,9 @@ func vals() (int, int) {
 }
 ```
 
-* **Variadic functions** can be called with any number of trailing arguments. For example, `fmt.Println` is a variatic function.
+* **Variadic functions** can be called with any number of trailing arguments. For example, `fmt.Println` is a variadic function.
 
-* Here is a function that takes an arbritary number of ints:
+* Here is a function that takes an arbitrary number of ints:
 
 ```
 func sum(nums ...int) {
@@ -225,9 +269,13 @@ nums := []int{1, 2, 3, 4}
 sum(nums...)
 ```
 
+<br>
+
 #### Strings 
 
-* Go offers lots of supports for string formating:
+<br>
+
+* Go offers lots of supports for string formatting:
 
 ```
 package main
@@ -342,8 +390,12 @@ Len:  5
 Char: 101
 ```
 
+<br>
+
 
 #### 🌟 Closure
+
+<br>
 
 * Go supports *anonymous functions* which can form *closures*. 
 * A function can return another function that is defined anonymously in the main function's body. The returned function closes over the variable i to form a closure:
@@ -379,9 +431,13 @@ Running this snippet prints:
 1
 ```
 
+<br>
+
 #### Recursion
 
-* Here is a classical factorial example for recursive functions:
+<br>
+
+* Here is a classic factorial example for recursive functions:
 
 ```
 package main
@@ -397,6 +453,8 @@ func main() {
     fmt.Println(fact(7))
 }
 ```
+
+<br>
 
 #### 🌟 Pointers
 
@@ -432,10 +490,14 @@ func zeroptr(iptr *int) {
 
 * The `&i` syntax gives the memory address of `i`, i.e., a pointer to `i`.
 
+<br>
+
 
 #### Structs
 
-* Go's structs are typed collection of fields. They are useful for grouping data together to form records.
+<br>
+
+* Go's structs are typed collections of fields. They are useful for grouping data together to form records.
 
 ```
 type person struct {
@@ -466,8 +528,11 @@ func main() {
 }
 ```
 
+<br>
 
 ##### Methods
+
+<br>
 
 * Go supports methods defined on struct types.
 
@@ -483,7 +548,11 @@ func (r *rect) area() int {
 
 * You may want to use a pointer receiver type to avoid copying on methods calls or to allow the method to mutate the receiving struct.
 
+<br>
+
 #### Interfaces
+
+<br>
 
 * Interfaces are named collections of method signatures and are used to achieve polymorphism in Go.
 
@@ -498,7 +567,11 @@ func measure(g geometry) {
 }
 ```
 
+<br>
+
 #### Errors
+
+<br>
 
 * It's idiomatic to communicate errors via an explicit return value.
 
@@ -510,7 +583,11 @@ func f1(arg int) (int, error) {
 }
 ```
 
+<br>
+
 #### 🌟 Panic
+
+<br>
 
 * A panic means something went unexpectedly wrong. It's used to fail fast on errors that shouldn't occur during normal operation, or that we aren't prepared to handle gracefully.
 
@@ -521,7 +598,11 @@ if err != nil {
 }   
 ```
 
+<br>
+
 #### 🌟 Goroutines
+
+<br>
 
 * A goroutine is a lightweight thread of execution.
 
@@ -537,9 +618,11 @@ go func(msg string){
 }("hello")
 ```
 
-
+<br>
 
 #### 🌟 Defer
+
+<br>
 
 * `defer` is used to ensure that a function call is performed later in the program's execution, usually for purposes of cleanup (such as `finally` in other languages).
 
@@ -577,8 +660,11 @@ func closeFile(f *os.File) {
 }
 ```
 
+<br>
 
 #### 🌟 Channels
+
+<br>
 
 * *Channels* are pipes that connect concurrent goroutines. 
 * Channels are typed by the values they convey.
@@ -611,7 +697,7 @@ messages <- "channel"
 fmt.Println(<-messages)
 ```
 
-* You can use channels to synchronize execution accross goroutines (or ou can use `Waitgroups`).
+* You can use channels to synchronize execution across goroutines (or ou can use `Waitgroups`).
 
 ```
 func worker(done chan bool) {
@@ -633,8 +719,11 @@ func main() {
 }
 ```
 
+<br>
 
 #### 🌟 Select
+
+<br>
 
 * Go's `select` lets you wait on multiple channel operations.
 * In the example below, select across two channels:
@@ -665,8 +754,11 @@ for i := 0; i < 2; i++ {
 }
 ```
 
+<br>
 
 #### Timeouts
+
+<br>
 
 * Timeouts are important for programs that connect external resources or that need to bound time.
 
@@ -686,7 +778,11 @@ case <- time.After(1 * time.Second):
 }
 ```
 
+<br>
+
 #### Non-Blocking Channel Operations
+
+<br>
 
 * Basic sends and receives on channels are blocking. We can use `select` with a `default` clause to implement *non-blocking* sends, received, and even non-blocking multi-way `selects`.
 
@@ -702,9 +798,13 @@ default:
 }
 ```
 
+<br>
+
 #### Closing Channels
 
-* Closing a channel indicates that no more values will be sent on it and it can communicate completation to the channel's receivers.
+<br>
+
+* Closing a channel indicates that no more values will be sent on it and it can communicate completion to the channel's receivers.
 
 ```
 func main() {
@@ -734,14 +834,18 @@ func main() {
     close(jobs)
     fmt.Println("sent all jobs")
 
-    // Await the worker, using the syncronization approach.
+    // Await the worker, using the synchronization approach.
     <-done
 }
 ```
 
+<br>
+
 #### Channels as Queues
 
-* We can use `range` to interate over values received from a channel.
+<br>
+
+* We can use `range` to iterate over values received from a channel.
 
 ```
 func main() {
@@ -760,7 +864,11 @@ func main() {
 }
 ```
 
+<br>
+
 #### 🌟 Timers & Tickers
+
+<br>
 
 * Go's built-in `timer` and `ticker` features make it possible to execute Go code at some point in the future or repeatedly.
 
@@ -798,9 +906,13 @@ done <- true
 fmt.Println("Ticker stopped")
 ```
 
+<br>
+
 #### Worker Pools
 
-* We can implement a woker pool in Golang using goroutines and channels:
+<br>
+
+* We can implement a worker pool in Golang using goroutines and channels:
 
 ```
 // These workers receive work on the jobs channel and
@@ -822,7 +934,7 @@ func main() {
     jobs := make(chan int, numJobs)
     results := make(chan int, numJobs)
 
-    // Starts up 3 workeds, initially blocked since
+    // Starts up 3 workers, initially blocked since
     // there are no jobs yet.
     for w := 1; w <= 3; w++ {
         go worker(w, jobs, results)
@@ -843,9 +955,12 @@ func main() {
 
 ```
 
+<br>
 
 
 #### 🌟 WaitGroups
+
+<br>
 
 * To wait for multiple goroutines to finish, we can use a *WaitGroup*.
 
@@ -867,7 +982,11 @@ func main() {
 }
 ```
 
+<br>
+
 #### 🌟 Signals
+
+<br>
 
 * Golang can handle Unix signals (e.g., `SIGTERM`, `SIGINT`).
 * Signal notification works by sending `os.Signal` values on a channel we create.
@@ -898,7 +1017,11 @@ func main() {
 }
 ```
 
+<br>
+
 #### Creating an HTTP Client
+
+<br>
 
 * Issuing an HTTP GET request to a server:
 
@@ -920,8 +1043,12 @@ if err := scanner.Err(); err != nil {
 }
 ```
 
+<br>
+
 
 #### Creating an HTTP Server
+
+<br>
 
 * A fundamental concept in `net/http` servers is **handlers**. A handler is an object implementing the `http.Handler` interface.
 * Functions serving as handlers take a `http.ResponseWriter` and `http.Request` as arguments. The response writer is used to fill in the HTTP response.
@@ -954,12 +1081,15 @@ func main() {
 }
 ```
 
+<br>
 
 
 #### 🌟 Context
 
-* A `Context` carries deadlines, cancellation signals, and other request-scoped values accross API boundaries and goroutines.
-* In the example below, a `context.Context` is created for each request by the `net/http` machinery, and it's available withe `Context()` method.
+<br>
+
+* A `Context` carries deadlines, cancellation signals, and other request-scoped values across API boundaries and goroutines.
+* In the example below, a `context.Context` is created for each request by the `net/http` machinery, and it's available with `Context()` method.
 
 ```
 import (
@@ -991,12 +1121,15 @@ func main() {
 }
 ```
 
+<br>
 
 
 #### 🌟 Exec'ing Processes
 
+<br>
+
 * To replace the current Go process with another (Go or non-Go), we can use `exec`.
-* In the snippet below, we get an absolute path for a binary (`ls`) and then create a slice with the arguments, load environmnet variables, and then run `exec`:
+* In the snippet below, we get an absolute path for a binary (`ls`) and then create a slice with the arguments, load environment variables, and then run `exec`:
 
 ```
 package main
@@ -1023,7 +1156,11 @@ func main() {
 }
 ```
 
+<br>
+
 #### 🌟 Spawning Processes
+
+<br>
 
 * It's possible to spawn processes from go using `exec.Command()`. This command creates an object to represent the external process.
 ```
