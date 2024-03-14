@@ -56,5 +56,7 @@
 * [go weekly](https://golangweekly.com/)
 * [effective go code](https://golang.org/doc/effective_go.html)
 * [/r/golang](https://www.reddit.com/r/golang/)
+
+
 * [exercism](https://exercism.io/tracks/go)
 * [daily dep](https://golang.github.io/dep/docs/daily-dep.html)
